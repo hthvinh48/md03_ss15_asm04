@@ -21,7 +21,10 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         // lý do cụ thể do filter ghi lại, không có thì dùng message mặc định
-        String message = request.getAttribute("jwt_error").toString();
+        Object error = request.getAttribute("jwt_error");   // đổi tên cho khớp key bạn đang dùng
+        String message = (error != null)
+                ? error.toString()
+                : "Unauthorized: Token không hợp lệ hoặc đã hết hạn";
 
         if (message != null) {
             message = "Unauthorized: Token không hợp lệ hoặc đã hết hạn";
