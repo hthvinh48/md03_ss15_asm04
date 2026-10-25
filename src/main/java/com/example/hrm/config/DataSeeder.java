@@ -20,9 +20,30 @@ public class DataSeeder implements CommandLineRunner {
         if (employeeRepository.count() > 0) return;
 
         employeeRepository.saveAll(List.of(
-                new Employee(null, "Nguyen Van A", new BigDecimal("15000000")),
-                new Employee(null, "Tran Thi B", new BigDecimal("18500000")),
-                new Employee(null, "Le Van C", new BigDecimal("22000000"))
+                new Employee(
+                        null,
+                        "Nguyen Van A",
+                        new BigDecimal("15000000"),
+                        "nguyenvana@gmail.com",
+                        "IT",
+                        null
+                ),
+                new Employee(
+                        null,
+                        "Tran Thi B",
+                        new BigDecimal("18500000"),
+                        "tranthib@gmail.com",
+                        "HR",
+                        null
+                ),
+                new Employee(
+                        null,
+                        "Le Van C",
+                        new BigDecimal("22000000"),
+                        "levanc@gmail.com",
+                        "Finance",
+                        null
+                )
         ));
     }
 }

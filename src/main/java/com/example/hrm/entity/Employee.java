@@ -23,4 +23,11 @@ public class Employee {
     private String fullName;
 
     private BigDecimal salary;
+
+    private String email;
+
+    private String department;
+
+    @Column(name = "avatar_url")
+    private String avatarUrl;
 }

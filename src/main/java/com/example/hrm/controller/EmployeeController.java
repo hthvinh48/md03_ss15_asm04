@@ -1,12 +1,13 @@
 package com.example.hrm.controller;
 
+import com.example.hrm.dto.req.EmployeeCreateDTO;
 import com.example.hrm.entity.Employee;
 import com.example.hrm.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +20,11 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.findAll());
+    }
+
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Employee> addEmployee(@ModelAttribute EmployeeCreateDTO request) {
+        Employee employee = employeeService.createEmployee(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(employee);
     }
 }
